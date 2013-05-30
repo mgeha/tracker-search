@@ -13,6 +13,7 @@
  */
 
 const Main          = imports.ui.main;
+const Lang          = imports.lang;
 const Search        = imports.ui.search;
 const SearchDisplay = imports.ui.searchDisplay;
 const Gio           = imports.gi.Gio;
@@ -83,20 +84,16 @@ var trackerSearchProviderFiles = null;
 var trackerSearchProviderFolders = null;
 
 
-function TrackerSearchProvider(title, categoryType) {
-    this._init(title, categoryType);
-}
+const TrackerSearchProvider = new Lang.Class({
+    Name: 'TrackerSearchProvider',
+    Extends: Search.SearchProvider,
 
-TrackerSearchProvider.prototype = {
-    __proto__ : Search.SearchProvider.prototype,
-    _categoryType : -1,
 
     _init : function(title, categoryType) {
 	this._categoryType = categoryType;
 	var grid =  new IconGrid.IconGrid({ rowLimit: MAX_ROWS, columnLimit: 8, xAlign: St.Align.MIDDLE });
     var actor = new SearchDisplay.GridSearchResults(this, grid);
 	this._grid = grid;
-    Search.SearchProvider.prototype._init.call(this, title + " (from Tracker)");
     },
 
     getResultMetas: function(resultIds,callback) {
@@ -257,7 +254,7 @@ return  this.searchSystem.pushResults(this, this.filterResults(cursor) );
     },
 
   
-};
+});
 
 function init(meta) {
 }

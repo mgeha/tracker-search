@@ -3,7 +3,7 @@
   "name": "Tracker Search", 
   "shell-version": [
     "3.6",
-    "3.6.1"
+    "3.8"
   ], 
   "url": "https://github.com/cewee/tracker-search", 
   "uuid": "tracker-search@cewee", 
